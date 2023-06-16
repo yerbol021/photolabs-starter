@@ -1,12 +1,23 @@
 import React from 'react';
-
 import '../styles/PhotoList.scss';
 
-const PhotoList = () => {
-  <ul className="photo-list">
-    {/* Insert React */}
-  </ul>
-}
+const PhotoList = ({ photos }) => {
+  return (
+    <ul className="photo-list">
+      {photos.map((photo) => (
+        <li key={photo.id}>
+          <img src={photo.urls.regular} alt="Photo" />
+          <div className="details">
+            <div className="username">{photo.user.username}</div>
+            <div className="location">
+              The photo is made in {photo.location.city}, which is in {photo.location.country}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 PhotoList.defaultProps = {
   photos: [
@@ -61,7 +72,7 @@ PhotoList.defaultProps = {
         "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
       }
     }
-   ]
-}
+  ]
+};
 
-export default PhotoList
+export default PhotoList;
